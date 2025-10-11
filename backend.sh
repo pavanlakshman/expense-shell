@@ -39,7 +39,7 @@ dnf install nodejs -y &>>$LOGFILE
 VALIDATE $? "Installing nodejs"
 
 id expense &>>$LOGFILE
-if [ $? -ne 0 ]
+if [ $? -ne 0 ]    # Here while creating the user first time it will create, but 2nd time it will thriugh error because of already the user is created at first time. For that reason we used if condition here.
 then
     useradd expense &>>$LOGFILE
     VALIDATE $? "Creating expense user"
@@ -47,7 +47,7 @@ else
     echo -e "Expense user already created...$Y SKIPPING $N"
 fi
 
-mkdir -p /app &>>$LOGFILE
+mkdir -p /app &>>$LOGFILE  # -p for if the folder is not there, then it will create a folder, and if the folder is exists, then it will exit.
 VALIDATE $? "Creating app directory"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
