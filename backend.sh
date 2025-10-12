@@ -39,7 +39,7 @@ dnf install nodejs -y &>>$LOGFILE
 VALIDATE $? "Installing nodejs"
 
 id expense &>>$LOGFILE
-if [ $? -ne 0 ]    # Here while creating the user first time it will create, but 2nd time it will thriugh error because of already the user is created at first time. For that reason we used if condition here.
+if [ $? -ne 0 ]    # Here while creating the user first time it will create, but 2nd time it will through error, because of already the user is created at first time. For that reason we used if condition here.
 then
     useradd expense &>>$LOGFILE
     VALIDATE $? "Creating expense user"
